@@ -96,7 +96,38 @@ app.post('/api/contactos', (req,res) =>{
 
 });
 
+/**
+ * PUT /api/contactos/:id
+ * actualiza un contacto por su id
+ */
 
+app.put('/api/contactos/:id', (req,res) => {
+    const id = Number(req.params.id);
+    const contactoEncontrado = contactos.find(c => c.id === id);
+
+    if (!contactoEncontrado) {
+        return res.status(404).json({error: 'contacto no encontrado'});
+    }
+
+    const {nombre, email, telefono, tipoContacto} = req.body;
+
+    if (!nombre || !telefono || !tipoContacto) {
+        return res.status(400).json({error: 'para actulizar el contacto debe incluir nombre, telefono y tipo de contacto'});
+    }
+
+    if (!TIPOS_CONTACTOS_VALIDOS.includes(tipoContacto)) {
+        return res.status(400).json({error: `el tipo de contacto debe de ser uno de: ${TIPOS_CONTACTOS_VALIDOS.join(',')}`});
+    }
+
+    contactoEncontrado.nombre = nombre;
+    contactoEncontrado.email = email;
+    contactoEncontrado.telefono = telefono;
+    contactoEncontrado.tipoContacto = tipoContacto;
+
+    res.status(200).json(contactoEncontrado);
+
+
+});
 
 
 /**

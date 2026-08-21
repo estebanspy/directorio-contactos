@@ -126,8 +126,28 @@ app.put('/api/contactos/:id', (req,res) => {
 
     res.status(200).json(contactoEncontrado);
 
+});
+
+/**
+ * DELETE /api/contactos/:id
+ * elimina un contacto por su id
+ */
+
+app.delete('/api/contactos/:id', (req,res) => {
+    const id = Number(req.params.id);
+    const contactoEncontrado = contactos.find(c => c.id === id);
+
+    if (!contactoEncontrado) {
+        return res.status(404).json({error: "contacto no encontrado"});
+    }
+
+    contactos = contactos.filter(c => c.id !== id);
+
+    res.status(204).end();
 
 });
+
+
 
 
 /**

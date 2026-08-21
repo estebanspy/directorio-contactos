@@ -33,7 +33,9 @@ let contactos = [
         tipoContacto: 'amigo'
 
     }
-]
+];
+
+const TIPOS_CONTACTOS_VALIDOS = ['amigo', 'trabajo', 'otro'];
 
 /**
  * GET /api/contactos 
@@ -61,6 +63,40 @@ app.get('/api/contactos/:id', (req,res) => {
     res.status(200).json(contacto);
 
 });
+
+/**
+ * POST /api/contactos
+ * crea un nuevo contacto con un id unico y no repetido
+ */
+
+app.post('/api/contactos', (req,res) =>{
+    const {nombre, email, telefono, tipoContacto} = req.body;
+
+    if (!nombre || !telefono || !tipoContacto) {
+        return res.status(400).json({error: "nombre, telefono y tipo de Contacto son obligatorios para crear el contacto"});
+    }
+
+    if (!TIPOS_CONTACTOS_VALIDOS.includes(tipoContacto)) {
+        return res.status(400).json({error: `el tipo de contacto debe de ser uno de: ${TIPOS_CONTACTOS_VALIDOS.join(', ')}`});
+        
+    }
+
+    const nuevoId = contactos.length > 0 ? Math.max(...contactos.map(c => c.id)) + 1 : 1;
+
+    const nuevoContacto = {
+        id: nuevoId,
+        nombre,
+        email,
+        telefono,
+        tipoContacto
+    };
+
+    contactos.push(nuevoContacto);
+    res.status(201).json(nuevoContacto);
+
+});
+
+
 
 
 /**

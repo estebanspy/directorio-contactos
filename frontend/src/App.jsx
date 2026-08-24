@@ -15,6 +15,10 @@ function App() {
     setContactos([...contactos, nuevoContacto]);
   };
 
+  const borrarContacto = (id) => {
+    setContactos(contactos.filter(c => c.id !== id));
+  };
+
   return (
     <>
       <h1>Contactos</h1>
@@ -26,10 +30,12 @@ function App() {
       {contactos.map(contacto => (
         <TarjetaContacto
           key={contacto.id}
+          id={contacto.id}
           nombre={contacto.nombre}
           email={contacto.email}
           telefono={contacto.telefono}
           tipoContacto={contacto.tipoContacto}
+          onBorrar={borrarContacto}
         />
       ))}
     </>

@@ -1,6 +1,7 @@
 import './App.css'
 import TarjetaContacto from './components/TarjetaContacto';
 import { useState } from 'react';
+import FormularioContacto from './components/FormularioContacto';
 
 function App() {
 
@@ -10,8 +11,8 @@ function App() {
     { id: 3, nombre:"maximo", email: "maximo@gmail.com", telefono: "300 200 100", tipoContacto: "amigo" }
   ]);
 
-  const anadirContacto = () => {
-    const nuevoContacto = {id: Date.now(), nombre:"helena", email:"helena@gmail.com", telefono:"500 400 300", tipoContacto:"trabajo"};
+  const anadirContacto = (datos) => {
+    const nuevoContacto = {id: Date.now(), ...datos};
     setContactos([...contactos, nuevoContacto]);
   };
 
@@ -23,9 +24,7 @@ function App() {
     <>
       <h1>Contactos</h1>
 
-      <button onClick={anadirContacto}>
-        Añadir Contacto
-      </button>
+      <FormularioContacto onCrear={anadirContacto}/>
 
       {contactos.map(contacto => (
         <TarjetaContacto

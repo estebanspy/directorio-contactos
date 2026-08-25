@@ -1,19 +1,28 @@
 import './App.css'
 import TarjetaContacto from './components/TarjetaContacto';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormularioContacto from './components/FormularioContacto';
 
 function App() {
 
-  const [contactos, setContactos] = useState([
-    { id: 1, nombre:"esteban", email: "esteban@gmail.com", telefono: "100 200 300", tipoContacto: "amigo" },
-    { id: 2, nombre:"diana", email: "diana@gmail.com", telefono: "300 200 300", tipoContacto: "amigo" },
-    { id: 3, nombre:"maximo", email: "maximo@gmail.com", telefono: "300 200 100", tipoContacto: "amigo" }
-  ]);
+  const [contactos, setContactos] = useState([]);
+
+  useEffect(() =>{
+    fetch('http://localhost:3001/api/contactos')
+      .then(res => res.json())
+      .then(datos => setContactos(datos))
+      .catch(error => console.error("Error al cargar los contactos:", error));
+  }, [])
 
   const anadirContacto = (datos) => {
-    const nuevoContacto = {id: Date.now(), ...datos};
-    setContactos([...contactos, nuevoContacto]);
+    fetch('http://localhost:3001/api/contactos', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(datos)
+    })
+      .then(res => res.json())
+      .then(contactoCreado => setContactos([...contactos, contactoCreado]))
+      .catch(error => console.error("Error al crear contacto:", error))
   };
 
   const borrarContacto = (id) => {

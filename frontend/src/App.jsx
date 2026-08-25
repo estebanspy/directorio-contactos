@@ -26,7 +26,11 @@ function App() {
   };
 
   const borrarContacto = (id) => {
-    setContactos(contactos.filter(c => c.id !== id));
+    fetch(`http://localhost:3001/api/contactos/${id}`, {
+      method: 'DELETE'
+    })
+      .then(() => setContactos(contactos.filter(c => c.id !== id)))
+      .catch(error => console.error("Error al borrar:", error));
   };
 
   return (

@@ -14,6 +14,8 @@ function App() {
 
   const [error, setError] = useState(null);
 
+  const [cargando, setCargando] = useState(true);
+
   useEffect(() =>{
     fetch('http://localhost:3001/api/contactos')
       .then(res => {
@@ -28,7 +30,8 @@ function App() {
       .catch(error => {
         console.error("Error al cargar los contactos:", error);
         setError(error.message);
-      });
+      })
+      .finally(() => setCargando(false));
   }, [])
 
 
@@ -122,6 +125,10 @@ function App() {
   return (
     <>
       <h1>Contactos</h1>
+
+      {cargando && <p>Cargando contactos...</p>}
+
+      {!cargando && contactos.length === 0 && <p>Todavia no hay contactos.</p> }
 
       {error && <p className="mensaje-error">{error}</p> }
 

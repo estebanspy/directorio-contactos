@@ -1,12 +1,37 @@
 import { useState } from "react";
 
+/**
+ * formulario controlado para dar de alta un contacto
+ * mantiene su propio estado mientras se escribe y entrega los datos 
+ * al padre mediante onCrear al enviar.
+ *  
+ * @component
+ * @param {object} props
+ * @param {(datos: {nombre: string, email: string, telefono: string, tipoContacto: string}) => void} props.onCrear - callback que recibe los datos del formulario al envirlo
+ * @returns {JSX.Element}
+ */
 function FormularioContacto({onCrear}) {
 
+    /**@type {[string, Function]} nombre introducido en el formulario */
     const [nombre, setNombre] = useState("");
+
+    /**@type {[string, Function]} email introducido en el formulario */
     const [email, setEmail] = useState("");
+
+    /**@type {[string, Function]} telefono introducido en el formulario */
     const [telefono, setTelefono] = useState("");
+
+    /**@type {[string, Function]} tipoContacto se incia en "amigo" por que un selecte siempre debe de tener una opcion valida seleccionada */
     const [tipoContacto, setTipoContacto] = useState("amigo");
 
+
+    /**
+     * envia los datos al padre y limpia los campos.
+     * cancela el comportamiento por defecto del formulario para
+     * evitar que la pagina se cargue 
+     * 
+     * @param {React.FormEvent} e - Evento de envio del formulario 
+     */
     const manejarEnvio = (e) => {
         e.preventDefault();
 

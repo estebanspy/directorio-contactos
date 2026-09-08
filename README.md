@@ -1,13 +1,24 @@
 # Directorio de Contactos con CRUD Completo
 
-app full stack Directorio de contactos con CRUD completo backend
-node.js/Express frontend JavaScript/React/Vite
+app full stack de un Directorio de contactos con CRUD completo
+incluye una API REST propia y una interfaz en React.
+
+![Directorio de Contactos](./docs/captura.png)
 
 ## Stack
 
 - Backend: Node.js, Express
 - Frontend: React, Vite
 - Almacenamiento: array en memoria (sin base de datos)
+
+## Caracteristicas
+
+- CRUD completo de contactos contra API REST propia
+- Validación de datos en cliente y servidor
+- Edición mediante ventana modal
+- Manejo de errores HTTP con mensajes del servidor visibles en la interfaz
+- Estados de carga y de lista vacía
+- Interfaz responsive construida con CSS Grid, sin media queries
 
 ## Instalación
 
@@ -29,6 +40,38 @@ npm install
 ```bash
 npm run dev
 ```
+
+4. En otra terminal, entra en la carpeta /frontend e instala las dependencias
+
+```bash
+cd frontend
+npm install
+```
+
+5. Arranca el servidor de desarrollo
+
+```bash
+npm run dev
+```
+
+## Limitaciones conocidas
+
+- Los datos se almacenan en un array en memoria: se pierden al reiniciar
+  el servidor
+- Sin autenticación ni control de acceso
+- Sin paginación: la carga inicial trae todos los registros
+- La lógica de negocio (validaciones, generación de ids) reside en los
+  manejadores de ruta, sin separación en capas
+- La ruta `GET /api/contactos/:id` está implementada en la API pero el
+  frontend no la consume, ya que la lista completa está en memoria
+
+## Mejoras futuras
+
+- Persistencia en base de datos (MySQL o MongoDB)
+- Separación en capas: rutas, controladores, servicios y repositorios
+- Autenticación con JWT y roles de usuario
+- React Router con vista de detalle por paciente
+- Tests unitarios y de integración
 
 ## API
 

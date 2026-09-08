@@ -1,0 +1,215 @@
+/*contenedor principal de la app*/
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--espacio-l) var(--espacio-m);
+}
+
+/*formulario*/
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-s);
+  align-items: center;
+
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: var(--espacio-m);
+}
+
+/*campos input */
+.campo {
+  flex: 1 1 180px;
+
+  padding: var(--espacio-s) 0.75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-s);
+  font-size: 0,95rem;
+  font-family: inherit;
+  color: var(--color-texto);
+  background-color: var(--color-superficie);
+
+  transition: border-color 0.2s ease, box-shadow 0,2s ease;
+}
+
+.campo:focus {
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px var(--color-primario-suave);
+}
+
+/*mensajes en la pagina*/
+.titulo {
+  margin: 0 0 var(--espacio-l) 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.mensaje-error {
+  background-color: var(--color-peligro-suave);
+  border: 1px solid var(--color-peligro);
+  border-left-width: 4px;
+  color: var(--color-peligro);
+  padding: var(--espacio-s) var(--espacio-m);
+  border-radius: var(--radio-s);
+  font-size: 0.9rem;
+  margin: 0 0 var(--espacio-m) 0;
+}
+
+.cargando, .lista-vacia {
+  color: var(--color-texto-suave);
+  text-align: center;
+  padding: var(--espacio-xl);
+}
+
+/*botones*/
+.boton{
+  padding: var(--espacio-s) var(--espacio-m);
+  border: none;
+  border-radius: var(--radio-s);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.boton:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 2px;
+}
+
+.boton-primario {
+  background-color: var(--color-primario);
+  color: white;
+}
+
+.boton-primario:hover {
+  background-color: var(--color-primario-oscuro);
+}
+
+.boton-secundario {
+  background-color: transparent;
+  color: var(--color-texto-suave);
+  border: 1px solid var(--color-borde);
+}
+
+.boton-secundario:hover {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+.boton-peligro {
+  background-color: transparent;
+  color: var(--color-peligro);
+  border: 1px solid var(--color-borde);
+}
+
+.boton-peligro:hover {
+  background-color: var(--color-peligro-suave);
+  border-color: var(--color-peligro);
+}
+
+/*contenedor de los botones de cada tarjeta */
+.tarjeta-acciones {
+  display: flex;
+  gap: var(--espacio-s);
+  margin-top: auto;
+  padding-top: var(--espacio-s);
+}
+
+/*badge*/
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: white;
+}
+
+.badge-amigo {background-color: var(--color-amigo);}
+.badge-trabajo {background-color: var(--color-trabajo);}
+.badge-otro {background-color: var(--color-otro);}
+
+/*lista de contacto*/
+.lista-contactos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--espacio-m);
+  margin-top: var(--espacio-l);
+}
+
+/*tarjeta contacto*/
+.tarjeta {
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: var(--espacio-m);
+  box-shadow: var(--sombra);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-s);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tarjeta:hover {
+  box-shadow: var(--sombra-elevada);
+  transform: translateY(-2px);
+}
+
+.tarjeta h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.tarjeta p {
+  margin: 0;
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+}
+
+/*estilos del componente ModalEditar*/
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: var(--color-superficie);
+  padding: var(--espacio-xl);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra-elevada);
+
+  width: 90%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-m);
+}
+
+.modal h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+/*contenedor de los botones del modal*/
+.modal-acciones {
+  display: flex;
+  gap: var(--espacio-s);
+  justify-content: flex-end;
+}

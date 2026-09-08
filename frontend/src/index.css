@@ -1,0 +1,50 @@
+:root {
+  /*superficies*/
+  --color-fondo: #f8fafc;
+  --color-superficie: #ffffff;
+  --color-borde: #e2e8f0;
+
+  /* Texto */
+  --color-texto: #0f172a;
+  --color-texto-suave: #64748b;
+
+  /* Acento */
+  --color-primario: #0d9488;
+  --color-primario-oscuro: #0f766e;
+  --color-primario-suave: #ccfbf1;
+
+  /* Estados */
+  --color-peligro: #dc2626;
+  --color-peligro-suave: #fef2f2;
+
+  /* Badges por tipo de contacto */
+  --color-amigo: #0d9488;
+  --color-trabajo: #4f46e5;
+  --color-otro: #64748b;
+
+  /* Espaciado */
+  --espacio-xs: 0.25rem;
+  --espacio-s: 0.5rem;
+  --espacio-m: 1rem;
+  --espacio-l: 1.5rem;
+  --espacio-xl: 2rem;
+
+  /* Formas */
+  --radio: 10px;
+  --radio-s: 6px;
+  --sombra: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --sombra-elevada: 0 8px 24px rgba(15, 23, 42, 0.12)
+
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.5;
+}
+

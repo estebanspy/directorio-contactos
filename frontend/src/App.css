@@ -23,7 +23,7 @@
   flex: 1 1 180px;
 
   padding: var(--espacio-s) 0.75rem;
-  padding: 1px solid var(--color-borde);
+  border: 1px solid var(--color-borde);
   border-radius: var(--radio-s);
   font-size: 0,95rem;
   font-family: inherit;
